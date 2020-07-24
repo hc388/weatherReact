@@ -1,5 +1,6 @@
 import React from "react";
 import showLocation from "./showLocation";
+import SearchLocationInput from "./autoComplete";
 import Form from './Form'
 import BodyHead from "./BodyHead";
 import ApiCall from "./apiCall";
@@ -21,6 +22,11 @@ class WeatherComp extends React.Component {
         this.setState(
             {location: fields}
         )
+    }
+
+    getNewCity = fields => {
+        console.log("App component got the obj: ", fields)
+        this.getCity(fields.address_components[0].long_name)
     }
 
     retrieveData = dataObj => {
@@ -55,11 +61,15 @@ class WeatherComp extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <Form getCity={fields => this.getCity(fields)}/>
-                    <ApiCall city = {this.state.location} key={this.state.location } retrieveData = {dataObj => this.retrieveData(dataObj)}/>
-
+                    {/*<Form getCity={fields => this.getCity(fields)}/>*/}
+                </div>
+                <div className="container1 cityType col-md-6">
+                    <SearchLocationInput getNewCity={fields => this.getNewCity(fields)}/>
+                    <ApiCall city={this.state.location} key={this.state.location}
+                             retrieveData={dataObj => this.retrieveData(dataObj)}/>
                 </div>
             </div>
+
         )
     }
 }

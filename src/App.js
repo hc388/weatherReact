@@ -2,8 +2,6 @@ import React from 'react';
 import Navigator from './Navigator'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Body from "./weatherBody";
-import GetWeather from "./GetWeather";
 import './styles.css';
 import WeatherComp from './WeatherComp'
 
