@@ -1,24 +1,12 @@
+/*
 import React from 'react';
 import GetWeather from "./GetWeather"
+import WeatherComp from "./WeatherComp";
 
 const Body = () => {
   return (
-    <div>
-      <header className="jumbotron" style={{paddingBottom: "0 px"}}>
-        <div className="container" style={{paddingTop: "0 px"}}>
-          <div className="row row-header">
-            <div className="col-12 col-sm-6">
-              <h1>Weather Today</h1>
-              {/* eslint-disable-next-line react/no-unescaped-entities */}
-              <p>This segment of the website displays location's weather using a web API from
-                openweathermap!</p>
 
-            </div>
-
-          </div>
-        </div>
-      </header>
-      {/*<div className="container1" style={{paddingTop: "20px"}}>
+      <div className="container1" style={{paddingTop: "20px"}}>
 
 
                 <div className="geoType">
@@ -37,12 +25,12 @@ const Body = () => {
                         </div>
                     </div>
                 </div>
-            </div>*/}
-      {/*<div className="container1 cityType col-md-6">
+            </div>
+            <div className="container1 cityType col-md-6">
                 <h3>User Query Based Weather</h3>
 
                 Enter your city below to view the current weather
-                <div id="cityForm">
+                {/!*<div id="cityForm">
                     <form action="#" onSubmit="getWeather(document.getElementById('CityName').value);return false"
                           id="nameform">
                         <div className="form-group">
@@ -55,11 +43,12 @@ const Body = () => {
                             Submit
                         </button>
                     </form>
-                </div>
-            </div>*/}
+                </div>*!/}
+                <WeatherComp />
+            </div>
     </div>
   )
 }
 
 
-export default Body();
+export default Body;*/

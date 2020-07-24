@@ -1,0 +1,122 @@
+body {
+    padding-top: 10px;
+    background-color: #F8DFDB;
+    color: #000;
+    font-family: big-caslon-fb, serif;
+    font-style: normal;
+    font-weight: 400;
+
+}
+.jumbotron{
+    background-color: #F8DFDB;
+    color: #000;
+
+
+}
+
+nav{
+    background-color: #F7EEED;
+    color: #000;
+}
+.navbar{
+    height: 50px;
+}
+.nav-link{
+    color: #000;
+    background-color: #F7EEED;
+}
+
+.container1{
+    background-color: #F7EEED;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 900px;
+    height: 70vh;
+    /*border: 1px solid red;*/
+    padding: 25px;
+
+}
+
+.container2{
+
+    text-align: center;
+    max-width: 600px;
+    height: 100vh;
+    border: 1px solid black;
+    padding: 25px;
+
+
+
+}
+.cityType{
+    height: auto;
+}
+
+#nameform{
+    text-align: center;
+    padding-top: 40px;
+    font-weight: 500;
+
+}
+
+
+.city{
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.container1 h1 h2 h3 span{
+    margin: 0;
+}
+
+.container1 h1 {
+    font-size: 8rem;
+}
+
+.container1 h2 {
+    font-size: 3rem;
+}
+
+.container1 h3 {
+    font-size: 1.5rem;
+}
+
+.container1 span {
+    font-size: 6rem;
+}
+
+.degrees{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    margin-left: 2rem;
+}
+
+#signimage{
+
+    max-width: 50%;
+}
+.nav-item{
+    padding-right: 10px;
+}
+@media (max-width: 1200px) {
+    .logocontainer{
+        margin: auto;
+        padding-left: 80px;
+    }
+}
+#logoimg{
+    padding-right: 20px;
+}
+.btn-primary-outline {
+    background-color: transparent;
+    border-color: #ccc;
+}
+
+@media (min-width: 576px) {
+    .jumbotron {
+        padding: 4rem 0rem 0rem 12rem;
+    }
+}
+
+

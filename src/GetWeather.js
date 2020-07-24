@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import SearchLocationInput from "./autoComplete";
+import ApiCall from "./apiCall";
 var finalCity = "";
 const GetWeather = () => {
   const [location, updateLocation] = useState("Manhattan");
@@ -54,6 +55,7 @@ const GetWeather = () => {
   navigator.geolocation.getCurrentPosition(success, error);
 
   function success(pos) {
+    console.log("IT GOT THE DATA");
     var lat = pos.coords.latitude;
     var long = pos.coords.longitude;
     weather(lat, long)
@@ -87,29 +89,23 @@ const GetWeather = () => {
 
   }
 
+  function handleClick(){
+    
+  }
+
   return(
-    <div id="cityForm">
-      <form action="#" onSubmit={e => {
-        e.preventDefault()
-        requestWeather(location);
-      }}
-            id="nameform">
-        <div className="form-group">
-          <p>{temp}</p>
-          <label htmlFor="CityName">CityName</label>
-          <p>{finalCity}</p>
-          <label htmlFor={location}>{location}</label>
-          <p></p>
-          <label htmlFor={desc}>{desc}</label>
-          <SearchLocationInput />
-
-          <small className="form-text text-muted">We'll soon include dropdown support.</small>
-
-        </div>
-        <button type="submit" className="btn btn-primary col-md-5">
-          Submit
-        </button>
-      </form>
+      <div>
+        <form  >
+          <label htmlFor={"location"}>
+              Temp
+            <input id="location"
+                   value = {location}
+                   placeholder="Enter Location"
+                   onChange={e => updateLocation(e.target.value)}
+                   />
+                   <button > Submit </button>
+          </label>
+        </form>
     </div>
   )
 }

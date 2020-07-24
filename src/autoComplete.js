@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
+import ApiCall from "./apiCall";
 
 let autoComplete;
+
+let finalCityObj;
 
 const loadScript = (url, callback) => {
   let script = document.createElement("script");
@@ -25,7 +28,7 @@ const loadScript = (url, callback) => {
 function handleScriptLoad(updateQuery, autoCompleteRef) {
   autoComplete = new window.google.maps.places.Autocomplete(
     autoCompleteRef.current,
-    { types: ["(cities)"], componentRestrictions: { country: "us" } }
+    {}
   );
   autoComplete.setFields(["address_components", "formatted_address"]);
   autoComplete.addListener("place_changed", () =>
@@ -37,7 +40,12 @@ async function handlePlaceSelect(updateQuery) {
   const addressObject = autoComplete.getPlace();
   const query = addressObject.formatted_address;
   updateQuery(query);
-  console.log(addressObject);
+  console.log('obs', addressObject)
+  if(addressObject !== null)
+    finalCityObj = addressObject.address_components[0].long_name
+  //console.log("The long name is: ", finalCityObj)
+  //console.log("I WAS FINALLY CALLED HERE.")
+  console.log("obj", addressObject);
 
 }
 
@@ -52,8 +60,14 @@ function SearchLocationInput() {
     );
   }, []);
 
-  return (
+  function handleClick() {
+    {finalCityObj !== undefined ?
+        console.log("The obejct inside the h5 si:L ", finalCityObj) :
+        console.log("Not yet")
+    }
+  }
 
+  return (
     <div className="search-location-input">
       <input
         ref={autoCompleteRef}
@@ -62,11 +76,14 @@ function SearchLocationInput() {
         placeholder="Enter a City"
         value={query}
       />
-      <button type="submit" className="btn btn-primary col-md-5">
+
+
+      <button type="submit"  className="btn btn-primary col-md-5">
         Submit
       </button>
-    </div>
+      </div>
   );
-}
+
+  }
 
 export default SearchLocationInput;
