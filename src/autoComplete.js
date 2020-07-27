@@ -38,7 +38,7 @@ function handleScriptLoad(updateQuery, autoCompleteRef, props) {
 
 async function handlePlaceSelect(updateQuery, props) {
     const addressObject = autoComplete.getPlace();
-    const query = addressObject.formatted_address;
+    const query = addressObject.address_components[0].long_name;
     updateQuery(query);
     console.log("obj", addressObject);
     props.getNewCity(addressObject)

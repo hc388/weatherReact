@@ -1,9 +1,9 @@
 import React from "react";
-import showLocation from "./showLocation";
 import SearchLocationInput from "./autoComplete";
 import Form from './Form'
 import BodyHead from "./BodyHead";
 import ApiCall from "./apiCall";
+import FetchLocation from "./FetchLocation";
 
 class WeatherComp extends React.Component {
 
@@ -11,11 +11,38 @@ class WeatherComp extends React.Component {
         super();
         this.state = {
             location: "",
-            temp: "00",
-            desc: "It's a Chilly but beautiful day in Wonderland",
-            iconUrl: ""
+            temp: "",
+            desc: "",
+            iconUrl: "",
+            dataObj: ""
         }
     }
+
+    componentDidMount() {
+        let currentComponent = this
+        navigator.geolocation.getCurrentPosition(function (position) {
+          console.log("Latitude is :", position.coords.latitude);
+            console.log("Longitude is :", position.coords.longitude);
+            let URL = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude+"&key=AIzaSyCI3Rpo_03gKdVow10kkbQMSeIpzFSB89c"
+                console.log(URL)
+            fetch(URL)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("The location from lat and long is: ", data)
+                    let cityData = data.results[5].address_components[1].long_name
+                    currentComponent.setState({
+                        location: cityData
+                    })
+
+
+                })
+
+
+
+        });
+
+    }
+
 
     getCity = fields => {
         console.log("App component got the city: ", fields)
@@ -49,6 +76,9 @@ class WeatherComp extends React.Component {
                     <div className="geoType">
                         <h3>User GeoLocation Based Weather</h3>
                         Please allow location access in order to access this feature.
+
+                        <FetchLocation lat={this.state.latitude} long={this.state.longitude}/>
+
                         <div>
                             <h2 className="city">{this.state.location}</h2>
                             <div className="middle">
@@ -65,8 +95,14 @@ class WeatherComp extends React.Component {
                 </div>
                 <div className="container1 cityType col-md-6">
                     <SearchLocationInput getNewCity={fields => this.getNewCity(fields)}/>
-                    <ApiCall city={this.state.location} key={this.state.location}
-                             retrieveData={dataObj => this.retrieveData(dataObj)}/>
+
+                    {
+                        (this.state.location !== "") &&
+                        <ApiCall city={this.state.location} key={this.state.location}
+                                 retrieveData={dataObj => this.retrieveData(dataObj)}/>
+
+                    }
+
                 </div>
             </div>
 

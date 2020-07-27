@@ -3,7 +3,7 @@ import LoginModal from './ModalSupport';
 const Navigator = () => {
   return (
     <div>
-      <nav className="navbar navbar-light navbar-expand-sm fixed-top" style={{paddingBottom: "0px;"}}>
+      <nav className="navbar navbar-light navbar-expand-sm fixed-top" style={{paddingBottom: "0px"}}>
         <div className="container logocontainer">
           <a href="./redoIndex.html"><img src={require("./gifnewlogo.gif")} height="40px" width="160px" id="logoimg"
                                           style={{paddingRight: "20px"}} alt="logo new gif"/></a>
